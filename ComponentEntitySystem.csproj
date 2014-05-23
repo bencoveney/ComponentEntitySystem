@@ -33,6 +33,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CES\Draw\DrawComponent.cs" />
+    <Compile Include="CES\Draw\DrawSystem.cs" />
+    <Compile Include="CES\EntityManager.cs" />
+    <Compile Include="CES\Physics\PhysicsComponent.cs" />
+    <Compile Include="CES\Physics\PhysicsSystem.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="CES\Entity.cs" />
+    <Compile Include="CES\IComponent.cs" />
+    <Compile Include="CES\ISystem.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FarseerPhysics">
+      <HintPath>..\Farseer Game\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\bin\Release\FarseerPhysics.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files\OpenTK\1.0\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
