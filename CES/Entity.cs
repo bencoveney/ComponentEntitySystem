@@ -12,8 +12,8 @@ namespace ComponentEntitySystem.CES
         private int _id;
         public int ID { get { return _id; } }
 
-        private List<IComponent> _components;
-        public List<IComponent> Components { get { return _components } }
+        private List<Component> _components;
+        public List<Component> Components { get { return _components; } }
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace ComponentEntitySystem.CES
         /// Adds a component to the entity
         /// </summary>
         /// <param name="component">The component to add</param>
-        public void AddComponent(IComponent component)
+        public void AddComponent(Component component)
         {
             component.ParentId = _id;
             _components.Add(component);
@@ -43,7 +43,7 @@ namespace ComponentEntitySystem.CES
         /// </summary>
         /// <param name="Name">The name to find</param>
         /// <returns>The first component found</returns>
-        public IComponent GetComponentByName(string Name)
+        public Component GetComponentByName(string Name)
         {
             return _components.Find(c => c.Name.Equals(Name));
         }
@@ -53,7 +53,7 @@ namespace ComponentEntitySystem.CES
         /// </summary>
         /// <param name="Name">The name to find</param>
         /// <returns>The components</returns>
-        public List<IComponent> GetComponentsByName(string Name)
+        public List<Component> GetComponentsByName(string Name)
         {
             return _components.FindAll(c => c.Name.Equals(Name));
         }
@@ -77,7 +77,7 @@ namespace ComponentEntitySystem.CES
         /// <param name="Name">The name of components to execute</param>
         public void ExecuteComponent(string Name)
         {
-            foreach (IComponent c in _components.FindAll(c => c.Name.Equals(Name)))
+            foreach (Component c in _components.FindAll(c => c.Name.Equals(Name)))
             {
                 c.Execute();
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ComponentEntitySystem.CES.Physics
 {
-    class PhysicsComponent : IComponent
+    class PhysicsComponent : Component
     {
         public string Name { get { return "Physics"; } }
 

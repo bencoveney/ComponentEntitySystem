@@ -10,7 +10,7 @@ namespace ComponentEntitySystem.CES
         private static Dictionary<int, Entity> _entities;
         public static List<Entity> Entities { get { return _entities.Values.ToList(); } }
 
-        static EntityManager()
+        private static EntityManager()
         {
             _entities = new Dictionary<int, Entity>();
         }
@@ -46,6 +46,10 @@ namespace ComponentEntitySystem.CES
         #region UniqueIdProvider
 
         private static int _id = 0;
+        /// <summary>
+        /// Gives a Unique ID to be used by entities as an Identifier
+        /// </summary>
+        /// <returns></returns>
         public static int GetNextId()
         {
             return _id++;
