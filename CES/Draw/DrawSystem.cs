@@ -5,8 +5,19 @@ using System.Text;
 
 namespace ComponentEntitySystem.CES.Draw
 {
-    class DrawSystem
+    static class DrawSystem : BaseSystem
     {
-        public override string SystemName { get { return "Draw"; } }
+        static DrawSystem()
+        {
+            Name = "DrawSystem";
+        }
+
+        public static void Execute()
+        {
+            foreach (Entity e in EntityManager.Entities)
+            {
+                e.ExecuteComponent(Name);
+            }
+        }
     }
 }

@@ -37,12 +37,14 @@
     <Compile Include="CES\Draw\DrawComponent.cs" />
     <Compile Include="CES\Draw\DrawSystem.cs" />
     <Compile Include="CES\EntityManager.cs" />
+    <Compile Include="CES\Factories.cs" />
+    <Compile Include="CES\NameAttribute.cs" />
     <Compile Include="CES\Physics\PhysicsComponent.cs" />
     <Compile Include="CES\Physics\PhysicsSystem.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="CES\Entity.cs" />
-    <Compile Include="CES\IComponent.cs" />
-    <Compile Include="CES\ISystem.cs" />
+    <Compile Include="CES\Component.cs" />
+    <Compile Include="CES\BaseSystem.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +56,7 @@
       <HintPath>D:\Program Files\OpenTK\1.0\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

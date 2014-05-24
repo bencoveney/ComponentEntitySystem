@@ -10,7 +10,7 @@ namespace ComponentEntitySystem.CES
         private static Dictionary<int, Entity> _entities;
         public static List<Entity> Entities { get { return _entities.Values.ToList(); } }
 
-        private static EntityManager()
+        static EntityManager()
         {
             _entities = new Dictionary<int, Entity>();
         }

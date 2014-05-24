@@ -5,21 +5,23 @@ using System.Text;
 
 namespace ComponentEntitySystem.CES
 {
-    abstract class System
+    abstract class BaseSystem
     {
-        /// <summary>
-        /// An identifier used by the system to find relevant components
-        /// </summary>
-        abstract public static string Name { get { return "SystemName"; } }
+        public static string Name { get; set; }
+
+        public BaseSystem()
+        {
+            Name = "SystemName";
+        }
 
         /// <summary>
         /// Performs the actions encompassed by the system
         /// </summary>
-        abstract public void Execute()
+        virtual public void Execute()
         {
             foreach (Entity e in EntityManager.Entities)
             {
-                e.ExecuteComponent(Name);
+                e.ExecuteComponent(BaseSystem.Name);
             }
         }
     }

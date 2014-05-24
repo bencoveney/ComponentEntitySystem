@@ -12,6 +12,7 @@ using FarseerPhysics.Dynamics;
 
 using ComponentEntitySystem.CES;
 using ComponentEntitySystem.CES.Physics;
+using ComponentEntitySystem.CES.Draw;
 
 namespace ComponentEntitySystem
 {
@@ -21,6 +22,7 @@ namespace ComponentEntitySystem
         public static World World { get { return _world; } }
 
         public PhysicsSystem _physicsSystem;
+        public DrawSystem _drawSystem;
 
         public Game(int width, int height, GraphicsMode graphicsMode, GameWindowFlags windowFlags, DisplayDevice device, int major, int minor, GraphicsContextFlags contextFlags) 
             : base(width, height, graphicsMode, "ComponentEntitySystem", windowFlags, device, major, minor, contextFlags)
@@ -38,6 +40,11 @@ namespace ComponentEntitySystem
             this.VSync = VSyncMode.On;
 
             _physicsSystem = new PhysicsSystem();
+            _drawSystem = new DrawSystem();
+
+            GL.ClearColor(Color4.SkyBlue);
+
+            EntityManager.AddEntity(Factories.CreateSquare(200, 25, 0, 0, 0, true));
 
             base.OnLoad(e);
         }
@@ -86,6 +93,8 @@ namespace ComponentEntitySystem
                 -(this.Height / 2),
                 0.0,
                 4.0);
+
+            _drawSystem.Execute();
 
             // Swap Buffers
             this.SwapBuffers();

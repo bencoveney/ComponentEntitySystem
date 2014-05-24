@@ -5,9 +5,14 @@ using System.Text;
 
 namespace ComponentEntitySystem.CES.Physics
 {
-    class PhysicsSystem
+    static class PhysicsSystem : BaseSystem
     {
-        public void Execute()
+        static PhysicsSystem()
+        {
+            Name = "Physics";
+        }
+
+        public static void Execute()
         {
             // Update the world at 60Hz
             Game.World.Step(0.0166f);

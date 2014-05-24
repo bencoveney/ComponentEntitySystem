@@ -12,19 +12,19 @@ namespace ComponentEntitySystem.CES
         /// An identifier used by the system to find relevant components.
         /// This should be set to return the name of the System
         /// </summary>
-        abstract public string Name { get { return System.Name; } }
+        public static string Name { get { return BaseSystem.Name; } }
 
         /// <summary>
         /// The ID of the parent entity
         /// Only assigned when components are added to their Parent Entity
         /// </summary>
-        abstract public int ParentId;
+        public int ParentId { get; set; }
 
         /// <summary>
         /// Executes the components logic.
         /// For physics and logic components this method would contain Update() code.
         /// For graphics components this method would contain Draw() code.
         /// </summary>
-        public void Execute();
+        abstract public void Execute();
     }
 }

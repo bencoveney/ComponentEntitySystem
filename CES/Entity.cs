@@ -22,6 +22,7 @@ namespace ComponentEntitySystem.CES
         public Entity()
         {
             _id = EntityManager.GetNextId();
+            _components = new List<Component>();
         }
 
         #endregion
