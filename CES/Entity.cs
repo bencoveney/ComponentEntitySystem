@@ -1,28 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// <copyright file="Entity.cs" company="Not Applicable">
+//     No Current Copyright
+// </copyright>using System;
 
 namespace ComponentEntitySystem.CES
 {
-    class Entity
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    /// <summary>
+    /// Defines the entity object
+    /// </summary>
+    public class Entity
     {
         #region Data Members
 
-        private int _id;
-        public int ID { get { return _id; } }
+        /// <summary>
+        /// The entity's unique identifier
+        /// </summary>
+        private int id;
 
-        private List<Component> _components;
-        public List<Component> Components { get { return _components; } }
+        /// <summary>
+        /// The collection of components the entity has assigned
+        /// </summary>
+        private List<IComponent> components;
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the Entity class.
+        /// </summary>
         public Entity()
         {
-            _id = EntityManager.GetNextId();
-            _components = new List<Component>();
+            this.id = EntityManager.GetNextId();
+            this.components = new List<IComponent>();
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets all components the entity has assigned
+        /// </summary>
+        public List<IComponent> Components
+        {
+            get
+            {
+                return this.components;
+            }
+        }
+
+        /// <summary>
+        /// Gets this entity's unique identifier
+        /// </summary>
+        public int ID
+        {
+            get
+            {
+                return this.id;
+            }
         }
 
         #endregion
@@ -33,39 +73,39 @@ namespace ComponentEntitySystem.CES
         /// Adds a component to the entity
         /// </summary>
         /// <param name="component">The component to add</param>
-        public void AddComponent(Component component)
+        public void AddComponent(IComponent component)
         {
-            component.ParentId = _id;
-            _components.Add(component);
+            component.ParentId = this.id;
+            this.components.Add(component);
         }
         
         /// <summary>
         /// Returns the first component found which has a given name
         /// </summary>
-        /// <param name="Name">The name to find</param>
+        /// <param name="name">The name to find</param>
         /// <returns>The first component found</returns>
-        public Component GetComponentByName(string Name)
+        public IComponent GetComponentByName(string name)
         {
-            return _components.Find(c => c.Name.Equals(Name));
+            return this.components.Find(c => c.Name.Equals(name));
         }
 
         /// <summary>
         /// Returns all components which have the given name
         /// </summary>
-        /// <param name="Name">The name to find</param>
+        /// <param name="name">The name to find</param>
         /// <returns>The components</returns>
-        public List<Component> GetComponentsByName(string Name)
+        public List<IComponent> GetComponentsByName(string name)
         {
-            return _components.FindAll(c => c.Name.Equals(Name));
+            return this.components.FindAll(c => c.Name.Equals(name));
         }
 
         /// <summary>
         /// Removes all components with a given name
         /// </summary>
-        /// <param name="Name">The name to remove</param>
-        public void RemoveComponents(string Name)
+        /// <param name="name">The name to remove</param>
+        public void RemoveComponents(string name)
         {
-            _components.RemoveAll(c => c.Name.Equals(Name));
+            this.components.RemoveAll(c => c.Name.Equals(name));
         }
 
         #endregion
@@ -75,10 +115,10 @@ namespace ComponentEntitySystem.CES
         /// <summary>
         /// Will call the Execute method of any components with the specified name
         /// </summary>
-        /// <param name="Name">The name of components to execute</param>
-        public void ExecuteComponent(string Name)
+        /// <param name="name">The name of components to execute</param>
+        public void ExecuteComponent(string name)
         {
-            foreach (Component c in _components.FindAll(c => c.Name.Equals(Name)))
+            foreach (IComponent c in this.components.FindAll(c => c.Name.Equals(name)))
             {
                 c.Execute();
             }

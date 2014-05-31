@@ -1,18 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// <copyright file="EntityManager.cs" company="Not Applicable">
+//     No Current Copyright
+// </copyright>
 
 namespace ComponentEntitySystem.CES
 {
-    static class EntityManager
-    {
-        private static Dictionary<int, Entity> _entities;
-        public static List<Entity> Entities { get { return _entities.Values.ToList(); } }
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
+    /// <summary>
+    /// A management class for entities
+    /// </summary>
+    public static class EntityManager
+    {
+        /// <summary>
+        /// All current entities indexed by their Unique Identifier
+        /// </summary>
+        private static Dictionary<int, Entity> entities;
+
+        /// <summary>
+        /// Tracks which unique IDs have been assigned
+        /// </summary>
+        private static int id = 0;
+
+        /// <summary>
+        /// Initializes static members of the EntityManager class
+        /// </summary>
         static EntityManager()
         {
-            _entities = new Dictionary<int, Entity>();
+            entities = new Dictionary<int, Entity>();
+        }
+
+        /// <summary>
+        /// Gets all entities
+        /// </summary>
+        public static List<Entity> Entities
+        {
+            get
+            {
+                return entities.Values.ToList();
+            }
         }
 
         /// <summary>
@@ -21,40 +49,35 @@ namespace ComponentEntitySystem.CES
         /// <param name="entity">The entity to add</param>
         public static void AddEntity(Entity entity)
         {
-            _entities.Add(entity.ID, entity);
+            entities.Add(entity.ID, entity);
         }
 
         /// <summary>
         /// Finds the entity with the given ID
         /// </summary>
-        /// <param name="ID">The ID to find</param>
+        /// <param name="id">The ID to find</param>
         /// <returns>The found entity</returns>
-        public static Entity GetEntityById(int ID)
+        public static Entity GetEntityById(int id)
         {
-            return _entities[ID];
+            return entities[id];
         }
 
         /// <summary>
         /// Removes an entity from the game
         /// </summary>
-        /// <param name="ID">The ID to remove</param>
-        public static void RemoveEntityById(int ID)
+        /// <param name="id">The ID to remove</param>
+        public static void RemoveEntityById(int id)
         {
-            _entities.Remove(ID);
+            entities.Remove(id);
         }
 
-        #region UniqueIdProvider
-
-        private static int _id = 0;
         /// <summary>
         /// Gives a Unique ID to be used by entities as an Identifier
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The next unique identifier</returns>
         public static int GetNextId()
         {
-            return _id++;
+            return EntityManager.id++;
         }
-
-        #endregion
     }
 }
